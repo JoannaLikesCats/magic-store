@@ -1,0 +1,55 @@
+body {
+  padding: 5.5%;
+}
+
+div {
+  width: 500px;
+  margin: 0 auto;
+  text-align: justify;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 20px;
+  letter-spacing: -0.8px;
+}
+
+b {
+  color: #e5a67e
+}
+
+button {
+  background-color: #f4bccd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #e5a67e;
+  transform: scale(1.1);
+}
+
+.button {
+  text-align: center;
+}
+
+.logo {
+  width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}

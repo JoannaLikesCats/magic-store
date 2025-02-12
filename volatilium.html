@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="elixir.css">
+    <title>Volatilium Vita Elixir</title>
+    <style>
+        .accordion {
+            background-color: #AEE2FF;
+            color: #0D0D0D;
+            cursor: pointer;
+            padding: 18px;
+            width: 90%;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            outline: none;
+            font-size: 19px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #93C6E7;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .active-color {
+            background-color: #E06469;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="cart.html">
+                <img src="images/cart.png" alt="Cart">
+            </a>
+        </div>
+        <div class="heart-icon">
+            <a href="wishlist.html">
+                <img src="images/heart.png" alt="Heart">
+            </a>
+        </div>
+    </nav>
+    <h1>✈️Volatilium Vita Elixir 🦋🧚‍♂️</h1>
+    <button class="add-to-wishlist" onclick="addToWishlist()">🤍 Add to Wishlist</button>
+
+    <div class="row">
+        <div class="column">
+            <img src="images/potions-pics/Volatilium Vita Elixir.png" alt="Volatilium Vita Elixir">
+        </div>
+        <div class="column">
+            <h1>About the potion</h1>
+            <button class="accordion">Duration</button>
+            <div class="panel">
+                <p>Buff duration: 2h, Nerf duration: 2h</p>
+            </div>
+            <button class="accordion">Ingredients</button>
+            <div class="panel">
+                <p>Celestial feathers, Sky Orchid, Levitation Crystals, Sky Diamond, Clouds cotton</p>
+            </div>
+            <button class="accordion">Buffs</button>
+            <div class="panel">
+                <p>Gain the ability to fly</p>
+            </div>
+            <button class="accordion">Nerfs</button>
+            <div class="panel">
+                <p>You won't be able to touch the ground</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+
+            if (i === 0) {
+                var colorChangeInterval = setInterval(function () {
+                    acc[0].classList.toggle("active-color");
+                }, 1000);
+                acc[0].addEventListener("click", function () {
+                    clearInterval(colorChangeInterval);
+                    acc[0].classList.remove("active-color");
+                });
+            }
+
+            var panel = acc[i].nextElementSibling;
+            panel.style.display = "none";
+        }
+
+        function addToWishlist() {
+            var potionImage = document.querySelector(".column img").src;
+            var potionTitle = document.querySelector(".column h1").textContent;
+            var potionData = {
+                image: potionImage,
+                title: potionTitle
+            };
+            var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            cartItems.push(potionData);
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        }
+    </script>
+</body>
+
+</html>

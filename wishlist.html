@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="wishlist.css">
+    <title>Wishlist</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="store.html">STORE</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+        </ul>
+        <div class="cart-icon">
+            <a href="cart.html">
+                <img src="images/cart.png" alt="Cart">
+            </a>
+        </div>
+        <div class="heart-icon">
+            <img src="images/heart.png" alt="Heart">
+        </div>
+    </nav>
+    <h1>Your wishlist</h1>
+
+    <div class="cart-container">
+        <div class="cart-items">
+            <!-- Display the potion items here -->
+        </div>
+    </div>
+
+    <script>
+        // Retrieve the cart items from localStorage
+        var cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+        // Display the potion items in the cart
+        var cartItemsContainer = document.querySelector(".cart-items");
+        cartItems.forEach(function (item, index) {
+            var potionImage = item.image;
+            var potionTitle = item.title;
+
+            var potionItem = document.createElement("div");
+            potionItem.classList.add("potion-item");
+
+            var imageElement = document.createElement("img");
+            imageElement.src = potionImage;
+            potionItem.appendChild(imageElement);
+
+            var removeButton = document.createElement("button");
+            removeButton.classList.add("remove-button");
+            removeButton.textContent = "Remove";
+            removeButton.addEventListener("click", function () {
+                // Remove the potion item from the cart
+                cartItems.splice(index, 1);
+                // Update the cart items in localStorage
+                localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                // Remove the potion item from the DOM
+                cartItemsContainer.removeChild(potionItem);
+            });
+            potionItem.appendChild(removeButton);
+
+            cartItemsContainer.appendChild(potionItem);
+        });
+    </script>
+</body>
+
+</html>
